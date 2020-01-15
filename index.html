@@ -1,0 +1,496 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Blockchain Dev Workshop</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="blockchain-dev-conversant"
+                  title="Blockchain Dev Workshop"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Introduction" duration="5">
+        <p>QZ:</p>
+<ol type="1" start="1">
+<li><a href="https://ieeexplore.ieee.org/abstract/document/8726738/" target="_blank">Rethinking blockchain security: Position Paper</a>, worked on the incident database for over 400 incidents</li>
+<li><a href="https://arxiv.org/abs/1910.09775" target="_blank">The Security Reference Architecture for Blockchains: Towards a Standardized Model for Studying Vulnerabilities, Threats, and Defenses</a>, contributed to the segment on smart contract security</li>
+<li><a href="https://blockchainresearchcollective.github.io/" target="_blank">Work with the Blockchain Research Collective</a>, coordinate efforts amongst universities</li>
+<li>Conducted courses with <a href="https://www.sginnovate.com/events/blockfellows-singapore-hub?fbclid=IwAR0MQP3LYLMkVPjXm3FmZq1X2vYjaiSkMd6gCCJ4B8jb8Tt8_HER3Fc9DSE" target="_blank">BlockFellows </a>in 2018</li>
+<li><a href="https://blog.colony.io/winners-of-the-colony-hackathon-c7ccd7ebbe86/" target="_blank">Honourable mention</a> for Colony&#39;s Hackathon, got $500!</li>
+</ol>
+<p>SY:</p>
+<ul>
+<li>Implemented academic scheme of Genaro&#39;s <a href="https://eprint.iacr.org/2019/114.pdf" target="_blank">Fast Multiparty Threshold ECDSA with Fast Trustless Setup</a> at an internship with Torus Labs</li>
+</ul>
+<p>Our objective for today is to make you conversant in blockchain technology. Therefore at the end of the day, you should be able to participate in a conversation about blockchain meaningfully.  </p>
+<aside class="warning"><p>This box is for Warnings/ Things to take note</p>
+</aside>
+<aside class="special"><p>This box is for things good to know</p>
+</aside>
+<google-codelab-survey survey-id="blockchain-dev-conversant-1">
+<h4>This is for feedback</h4>
+<paper-radio-group>
+<paper-radio-button>Yes</paper-radio-button>
+<paper-radio-button>No</paper-radio-button>
+</paper-radio-group>
+</google-codelab-survey>
+<h2 class="checklist" is-upgraded><strong>What you&#39;ll learn</strong></h2>
+<ul class="checklist">
+<li>Key concepts that underpin all blockchain technology</li>
+<li>Working with blockchain technology</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Syllabus Overview" duration="5">
+        <p>I like to use this analogy when explaining blockchain. It is a:</p>
+<ol type="1" start="1">
+<li>Data structure - similar to a situation where all previous e-mail replies are kept in the e-mail chain. Except in a blockchain, you include a unique hash that is representative of all previous e-mails in the next e-mail.</li>
+<li>Technology - generally a suite of technologies that involve multiple parties that do not necessarily trust each other to collaborate. This relies on the underlying data structure of the blockchain which might not be a single continuously growing chain of blocks either.</li>
+</ol>
+<h2 is-upgraded><strong>Part 1</strong></h2>
+<p>Every concept will follow this format: </p>
+<ol type="1" start="1">
+<li><strong>What</strong> this concept is summarised into a sentence or two</li>
+<li><strong>Issues</strong> that make it challenging to achieve this concept in practice or some other effects it might cause</li>
+<li><strong>Why</strong> this is important</li>
+<li><strong>How</strong> this concept is achieved in blockchain technology explained through examples</li>
+<li><strong>Which </strong>examples currently exist</li>
+<li>10 minutes for questions and further discussion</li>
+</ol>
+<p>Concepts to cover today:</p>
+<ul>
+<li>Decentralisation</li>
+<li>Immutability</li>
+<li>Traceability</li>
+</ul>
+<p>We will finally put it all together with an example.</p>
+<h2 is-upgraded><strong>Part 2</strong></h2>
+<p>We will now cover how it is like to work with blockchain technology in terms of development tools and debugging tools.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="P1.1: Decentralisation" duration="20">
+        <aside class="warning"><p>Terms</p>
+<p>Peers - individuals that make up the network</p>
+<p>Consensus - the method that peers use to agree on the state of the network</p>
+</aside>
+<h2 is-upgraded><strong>What</strong></h2>
+<p class="image-container"><img style="width: 547.00px" src="img\6c8198d9ca047649.png"></p>
+<aside class="special"><p><em>There are several forms of decentralisation with varying degrees for each form leading to different properties and tradeoffs.</em></p>
+</aside>
+<p>You can be decentralised in terms of architecture, culture, control, and decision-making.</p>
+<ul>
+<li>Architecture sets forth the different roles of network participants and how they interact. A highly decentralised architecture will ensure that all peers  have the exact same role and thus exert the same level of influence. A centralised architecture would give a single peer near full control of the network while other participants may only interact with it in limited ways. This can also affect the consensus protocols peers use.</li>
+<li>Culture defines the social norms of the people that interact with the network. This could be in terms of the developers that build the software of the network, developers that build applications on the network, researchers that explore the potential and pitfalls of the network, and anyone that essentially has a stake in it.</li>
+<li>Control of the network can be done in several ways but ultimate result in the governing of the network&#39;s participants. This may involve legal structures as to how the network is funded or the amount of changes each peer can make on the network itself.</li>
+<li>Decision-making processes determine the growth of each network and help in the weighing of trade-offs that might have to be taken. As the technology is new, there are challenges that are unsolved and unforeseen. Having a robust decision-making process is important to ensure that the network can evolve to adapt to each challenge, social or technical.</li>
+</ul>
+<aside class="special"><p><em>This concept is fundamental to blockchain technology as it is its key value proposition for most use cases.</em></p>
+</aside>
+<p>Decentralization can be viewed from a blockchain perspective as a mechanism that provides a way to remodel existing applications and paradigms or build new applications in order to give full control to users. There are conflicting ideas on the importance of decentralisation but most agree that it removes the need for trust when parties collaborate. This gives rise to new types of goods and services that are still untested.</p>
+<h2 is-upgraded><strong>Issues</strong></h2>
+<p>Scaling – there are challenges in keeping a network decentralized if one intends to scale. A common problem is the transaction speed, which plagued Ethereum for quite a while. Some solutions involve lowering levels of decentralization as a tradeoff for faster transactions, but it fundamentally lowers the level of security of the network due to the need for trusted parties (eg. Supernodes)</p>
+<p>Economics – as a network grows, one cannot predict how its peers might interact when utilising the resources a network provides. This might lead to levels of centralization in a network. (Mining power centralization, Centralised exchanges)</p>
+<h2 is-upgraded><strong>Why</strong></h2>
+<ol type="1" start="1">
+<li>It allows for greater participation between non-trust parties</li>
+<li>Better reliability in your network as you do not rely on central intermediaries (uptime, processes etc)</li>
+</ol>
+<h2 is-upgraded><strong>How</strong><strong> this concept is achieved in blockchain technology</strong></h2>
+<p>Using the forms of decentralisation as a guide:</p>
+<ol type="1" start="1">
+<li>Architecture</li>
+</ol>
+<p>Bitcoin - Full nodes, Light Nodes, Simple Payment Verification (SPV) Clients.</p>
+<p>Hyperledger Fabric - Client, Peer, Orderer</p>
+<table>
+<tr><td colspan="1" rowspan="1"><p>Client</p>
+</td><td colspan="1" rowspan="1"><p>Peer</p>
+</td><td colspan="1" rowspan="1"><p>Orderer</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Submits an actual transaction-invocation to the endorsers, and broadcasts transactions-proposals to the orderer</p>
+</td><td colspan="1" rowspan="1"><p>A node that commits transactions and maintains the state and copy of the ledger. Can also have a special endorser role</p>
+</td><td colspan="1" rowspan="1"><p>Node running the communication service that implements a delivery guarantee</p>
+</td></tr>
+</table>
+<ol type="1" start="2">
+<li>Culture</li>
+</ol>
+<p>Open source - an ethos that values collaborating on community projects</p>
+<p>Linux Foundation - arguably the most successful open source foundation. Their involvement in blockchain is through the Hyperledger project.</p>
+<ol type="1" start="3">
+<li>Control</li>
+</ol>
+<p>Ethereum Foundation - incorporated as a Swiss non-profit at Zug, Switzerland. Provides <a href="https://blog.ethereum.org/2018/08/17/ethereum-foundation-grants-update-wave-3/" target="_blank">Ethereum Grants</a> that pay for teams that work on projects.</p>
+<ol type="1" start="4">
+<li>Decision-making</li>
+</ol>
+<p>Ethereum Improvement Proposals (EIPs) - currently this is how all decisions are made.</p>
+<h2 is-upgraded><strong>Which </strong><strong>examples currently exist</strong></h2>
+<p class="image-container"><img style="width: 624.00px" src="img\359fa5095a0e3047.png"></p>
+<p>Self-sovereign identity where users can manage your own reputation, data, and digital assets</p>
+<p><em>ID2020 </em>- supports digital identity programs across the world</p>
+<p><em>uPort</em> - build tools for decentralised identity data management</p>
+<p>Decentralised exchanges that requires no central coordinating party and all participants interact based on incentives</p>
+<p><em>Kyber Network</em></p>
+<p class="image-container"><img style="width: 602.00px" src="img\a0393350c17452f.png"></p>
+<p>Decentralised Autonomous Organisations allow participants to carry out democratic processes without trusting any particular institution as a central party. This could be through decentralised means to propose ideas, vote on ideas, making decisions for the organisation or individuals all carried out through smart contracts.</p>
+<p><em>MakerDAO </em>- provides a stable digital currency. The DAO sets the ‘stability fee&#39;, ‘collateralization ratio&#39; and triggers an ‘emergency shutdown&#39; if needed.</p>
+<aside class="warning"><p>References used for this concept</p>
+<p>1. <a href="https://medium.com/@VitalikButerin/the-meaning-of-decentralization-a0c92b76a274" target="_blank">https://medium.com/@VitalikButerin/the-meaning-of-decentralization-a0c92b76a274</a></p>
+<p>2. <a href="https://en.bitcoin.it/wiki/Network" target="_blank">htps://en.bitcoin.it/wiki/Network</a></p>
+<p>3. <a href="https://hyperledger-fabric.readthedocs.io/en/release-1.4/arch-deep-dive.html" target="_blank">https://hyperledger-fabric.readthedocs.io/en/release-1.4/arch-deep-dive.html</a></p>
+<p>4. <a href="https://redhat-documentation.github.io/community-collaboration-guide/" target="_blank">https://redhat-documentation.github.io/community-collaboration-guide/</a></p>
+<p>5. <a href="https://id2020.org/resources" target="_blank">https://id2020.org/resources</a></p>
+<p>6. <a href="https://www.uport.me/" target="_blank">https://www.uport.me/</a></p>
+<p>7. <a href="https://kyber.network/" target="_blank">https://kyber.network/</a></p>
+<p>8.<a href="https://hackernoon.com/whats-makerdao-and-what-s-going-on-with-it-explained-with-pictures-f7ebf774e9c2" target="_blank">https://hackernoon.com/whats-makerdao-and-what-s-going-on-with-it-explained-with-pictures-f7ebf774e9c2</a></p>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="P1.2: Immutability" duration="20">
+        <aside class="warning"><p>Terms</p>
+<p>Fork - change to the protocol or a  divergence from previous version of blockchain.</p>
+<p>Blockchain explorer - a tool to traverse blockchain records</p>
+<p>Hashing - one-way function generating values from a string of text. It has preimage resistance (hard to find x given a <code>H(x)</code>), second preimage resistance (hard to find x&#39; such that <code>H(x)==H(x&#39;)</code>) and collision resistance (where <code>H(x)==H(y)</code>).</p>
+<p class="image-container"><img style="width: 602.00px" src="img\612749f1d7dbac34.png"></p>
+<p>Block structure - describes the agreed upon structure of each block in the blockchain by its peers</p>
+<p class="image-container"><img style="width: 602.00px" src="img\b84b8f2371996e9d.png"></p>
+<p>Fungible – being something of such a nature that one part or quantity may be replaced by another equal part or quantity in paying a debt or settling an account</p>
+</aside>
+<h2 is-upgraded><strong>What</strong></h2>
+<aside class="special"><p><em>All interaction is made reliable by making it unchangeable by any single party, ensuring that activity records and network participation rules are agreed and kept until all necessary parties agree to change them.</em></p>
+</aside>
+<p>The structure of the blockchain itself affords the ability for individuals to independently verify the current state of the network. Each peer can compute the blockchain records for themselves to replicate the changes in the state of the network. A malicious peer will have to compute the consensus protocol for blocks already mined and then outcompete all the miners and broadcast their blocks first to every peer.</p>
+<p>Consensus protocols cannot be easily changed and require a fork.</p>
+<p>A fork can also be used to roll back records but it requires most peers to agree to the fork.</p>
+<aside class="special"><p><em>This makes digital goods act like real physical goods and not just a digital representation..</em></p>
+</aside>
+<p>When records can no longer be easily changed by any single party, this creates a new type of good that is purely digital. This is because previously, people could simply make copies and replicate the good, thus no digital good is scarce. The immutability of the records achieved through decentralisation means that the state of such a good must be agreed upon by the entire network, analogous to physical goods that can be verified independently through sight or touch.</p>
+<h2 is-upgraded><strong>Issues</strong></h2>
+<p>Hard forks - rewriting large portions of the blockchain means that records are not absolutely immutable</p>
+<p>Irreversibility - wrong actions once accepted and confirmed by the network cannot be easily reversed. Data on the blockchain will stay on the blockchain. Vulnerable smart contracts can be easily decompiled and exploited. The infamous <a href="https://pastebin.com/CcGUBgDG" target="_blank">DAO attacker left his message</a> to the Ethereum Community. <a href="https://www.etherchain.org/tx/d3d4483662185863cde4326ccf5205204adbcda33468587e8153de3fb83a9a37" target="_blank">See it for yourself</a> in the blockchain explorer where multiple transactions were made resulting in a loss of $70M.</p>
+<h2 is-upgraded><strong>Why</strong></h2>
+<ol type="1" start="1">
+<li>Sets forth a new paradigm by no longer requiring record-keeping intermediaries</li>
+<li>Overcomes the need for trust in records keptas you can verify independently</li>
+</ol>
+<h2 is-upgraded><strong>How</strong></h2>
+<p>New records - Keep the hash of the previous block and a unique nonce, miners compete to find the nonce for the next block </p>
+<p>Old records -  easily verified that previous blocks are correct by hashing the blocks and checking that the nonces are correct</p>
+<h2 is-upgraded><strong>Which</strong></h2>
+<p>ERC721 -  To emulate rare, collectible items with Ethereum tokens by making these tokens non-fungible.</p>
+<p>ERC20 - Allows smart contracts to act very similarly to a conventional cryptocurrency so that this, hosted on the Ethereum blockchain, can be sent, received, checked of its total supply and checked for the amount that is available on an individual address<strong>.</strong></p>
+<aside class="warning"><p>References used for this concept</p>
+<p>1. <a href="https://hackernoon.com/blockchain-forks-b0dca84db0b0" target="_blank">https://hackernoon.com/blockchain-forks-b0dca84db0b</a>0</p>
+<p>2. <a href="https://www.coindesk.com/understanding-dao-hack-journalists" target="_blank">https://www.coindesk.com/understanding-dao-hack-journalists</a></p>
+<p>3. <a href="https://medium.com/crypto-currently/the-anatomy-of-erc721-e9db77abfc24" target="_blank">https://medium.com/crypto-currently/the-anatomy-of-erc721-e9db77abfc24</a></p>
+<p>4. <a href="https://medium.com/blockchannel/the-anatomy-of-erc20-c9e5c5ff1d02" target="_blank">https://medium.com/blockchannel/the-anatomy-of-erc20-c9e5c5ff1d02</a></p>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="P1.3: Traceability" duration="20">
+        <aside class="warning"><p>Terms</p>
+<p>Address - a 27-34 digit code consisting of letters and numbers. It is generated by the wallet where you store your coins and is usually currency-specific.</p>
+</aside>
+<h2 is-upgraded><strong>What</strong></h2>
+<aside class="special"><p><em>The ability to hide the link between transactions and addresses are important due to privacy concerns</em></p>
+</aside>
+<p>You can match the transaction to the address on the blockchain itself quite easily. When you go to a block explorer and view any block, you will see every transaction in the block, the miner, and any part of the block structure.</p>
+<p>The pseudonymity that comes with most blockchains is that the address is not traced to a physical identity.</p>
+<aside class="special"><p><em>Even though the blockchain is considered public and immutable, individual transactions can be anonymous.</em></p>
+</aside>
+<p>It&#39;s this pseudonymity that made blockchain technology an ideal method for illegal activity in its earlier days such as through <a href="https://fortune.com/2017/10/02/bitcoin-sale-silk-road/" target="_blank">Silk Road</a>.</p>
+<p>However once an address is linked to an individual, this pseudonymity is immediately broken and can be <a href="https://www.ifca.ai/fc14/papers/fc14_submission_11.pdf" target="_blank">easily traced</a>.</p>
+<h2 is-upgraded><strong>Issues</strong></h2>
+<p>The problems with being traceable is the lack of privacy. One key concern is the <a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation" target="_blank">General Data Protection Regulation (GDPR)</a> that would make it impossible to conduct business on the blockchain. </p>
+<p>Time - privacy schemes <a href="https://crypto.stackexchange.com/questions/63691/how-much-time-to-generate-a-proof-in-zk-snark" target="_blank">take longer to compute</a> and might severely impact usability of blockchain applications.</p>
+<p>That being said, there are new encryption schemes such as <a href="https://medium.com/hashed-official/homomorphic-blockchain-1f7db66ac2f7" target="_blank">homomorphic encryption</a> that might help resolve this.</p>
+<h2 is-upgraded><strong>Why</strong></h2>
+<p>If privacy is implemented</p>
+<ol type="1" start="1">
+<li>Potentially better control over personal data</li>
+<li>Information that requires secrecy can be conducted over public blockchains</li>
+</ol>
+<p>If records are meant to be traceable</p>
+<ol type="1" start="1">
+<li>Makes for a great audit trail for provenance</li>
+<li>Allows for fine analysis of actions that occurred over time by any peer</li>
+</ol>
+<h2 is-upgraded><strong>How</strong></h2>
+<p><em>Making transactions traceable</em></p>
+<p>Naive - you can just put your name on the transaction itself and you can be immediately traced to it.</p>
+<p>Data science - such as this work on <a href="https://medium.com/alethio/dex-in-the-2019-a-recap-by-numbers-96d506ba1cb8" target="_blank">analysing decentralised exchanges</a>. Google has also made the <a href="https://cloud.google.com/blog/products/gcp/bitcoin-in-bigquery-blockchain-analytics-on-public-data" target="_blank">Bitcoin </a>and <a href="https://cloud.google.com/blog/products/data-analytics/ethereum-bigquery-public-dataset-smart-contract-analytics" target="_blank">Ethereum </a>blockchains available on BigQuery.</p>
+<p><em>Making transactions untraceable</em></p>
+<p>Zero Knowledge Proofs - let&#39;s you prove that you know some secret to another party without revealing the secret itself</p>
+<p>Homomorphic encryption - introduced by Ronald L. Rivest and Len Alderman (the R and A of RSA). It allows one to perform computations on the data without ever decrypting it.</p>
+<p>This is a BIG deal because it&#39;s a major stumbling block for practical blockchain applications.</p>
+<h2 is-upgraded><strong>Which</strong></h2>
+<p><em>Making transactions traceable</em></p>
+<p class="image-container"><img style="width: 602.00px" src="img\1f03b38f809259a2.png"></p>
+<p>From &#34;When to chains combine; supply chain meets blockchain&#34; by Deloitte</p>
+<p><em>Making transactions untraceable</em></p>
+<p class="image-container"><img style="width: 624.00px" src="img\a5a8cf9363656cd9.png"></p>
+<p>From the Princeton Bitcoin book</p>
+<p><em>Nightfall</em> - private transactions on the Ethereum blockchain using zk-snarks by EY</p>
+<aside class="warning"><p>References used for this concept</p>
+<p>1. <a href="https://hackernoon.com/eli5-zero-knowledge-proof-78a276db9eff" target="_blank">https://hackernoon.com/eli5-zero-knowledge-proof-78a276db9eff</a></p>
+<p>2.<a href="https://medium.com/privacy-preserving-natural-language-processing/homomorphic-encryption-for-beginners-a-practical-guide-part-1-b8f26d03a98a" target="_blank">https://medium.com/privacy-preserving-natural-language-processing/homomorphic-encryption-for-beginners-a-practical-guide-part-1-b8f26d03a98a</a></p>
+<p>3.<a href="https://www2.deloitte.com/content/dam/Deloitte/ie/Documents/IE_C_TL_Supplychain_meets_blockchain_.pdf" target="_blank">https://www2.deloitte.com/content/dam/Deloitte/ie/Documents/IE_C_TL_Supplychain_meets_blockchain_.pdf</a></p>
+<p>4. <a href="https://www.lopp.net/pdf/princeton_bitcoin_book.pdf" target="_blank">https://www.lopp.net/pdf/princeton_bitcoin_book.pdf</a></p>
+<p>5. <a href="https://github.com/EYBlockchain/nightfall" target="_blank">https://github.com/EYBlockchain/nightfall</a></p>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="P1.4 Putting it together: a working blockchain" duration="10">
+        <p><strong>You cannot mention blockchain without first understanding Bitcoin</strong>. <strong>It sets forth the very first principles and ideas that made blockchain technology possible.</strong></p>
+<p>Bitcoin&#39;s consensus protocol was revolutionary at that time and has become contentious recently due to energy concerns, mining centralisation, and up-and-coming ‘new&#39; consensus protocols. But let&#39;s start with the original.</p>
+<p class="image-container"><img style="width: 569.00px" src="img\160721d0219d5687.png"></p>
+<p> Bitcoin also set forth the original protocol and all network participants have to follow. This was key as it was the first decentralised and public method for individuals to transfer value.</p>
+<p class="image-container"><img style="width: 570.00px" src="img\2dc6aaef4608be40.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="P1.5 Putting it together: making a blockchain" duration="20">
+        <p>This segment references from &#34;Learn Blockchains by Building One&#34; by Daniel van Flymen.</p>
+<ol type="1" start="1">
+<li><h2 is-upgraded><strong>The blockchain itself</strong></h2>
+</li>
+</ol>
+<p>You need to represent the blockchain by defining what is a transaction, what is a block, and how the blocks reference previous blocks.</p>
+<pre>block = {
+    &#39;index&#39;: 1,
+    &#39;timestamp&#39;: 1506057125.900785,
+    &#39;transactions&#39;: [
+        {
+            &#39;sender&#39;: &#34;8527147fe1f5426f9dd545de4b27ee00&#34;,
+            &#39;recipient&#39;: &#34;a77f5cdfa2934df3954a5c7c7da5df1f&#34;,
+            &#39;amount&#39;: 5,
+        }
+    ],
+    &#39;proof&#39;: 324984774000,
+    &#39;previous_hash&#39;: &#34;2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824&#34;
+}</pre>
+<ol type="1" start="2">
+<li><h2 is-upgraded><strong>Consensus algorithm</strong></h2>
+</li>
+</ol>
+<p>The guide implements a basic proof of work algorithm that is difficult to find but easy to verify. The consensus algorithm searches for hashes that end in a certain number of 0s.</p>
+<pre>import hashlib
+import json
+
+from time import time
+from uuid import uuid4
+
+
+class Blockchain(object):
+    ...
+        
+    def proof_of_work(self, last_proof):
+        &#34;&#34;&#34;
+        Simple Proof of Work Algorithm:
+         - Find a number p&#39; such that hash(pp&#39;) contains leading 4 zeroes, where p is the previous p&#39;
+         - p is the previous proof, and p&#39; is the new proof
+        :param last_proof: &lt;int&gt;
+        :return: &lt;int&gt;
+        &#34;&#34;&#34;
+
+        proof = 0
+        while self.valid_proof(last_proof, proof) is False:
+            proof += 1
+
+        return proof
+
+    @staticmethod
+    def valid_proof(last_proof, proof):
+        &#34;&#34;&#34;
+        Validates the Proof: Does hash(last_proof, proof) contain 4 leading zeroes?
+        :param last_proof: &lt;int&gt; Previous Proof
+        :param proof: &lt;int&gt; Current Proof
+        :return: &lt;bool&gt; True if correct, False if not.
+        &#34;&#34;&#34;
+
+        guess = f&#39;{last_proof}{proof}&#39;.encode()
+        guess_hash = hashlib.sha256(guess).hexdigest()
+        return guess_hash[:4] == &#34;0000&#34;</pre>
+<ol type="1" start="3">
+<li><h2 is-upgraded><strong>Interacting through an API</strong></h2>
+</li>
+</ol>
+<p>The guide uses Flask so that peers can make transactions, mine, call the chain, add new  nodes, resolve conflicting blocks.</p>
+<pre>...
+import requests
+
+
+class Blockchain(object)
+    ...
+    
+    def valid_chain(self, chain):
+        &#34;&#34;&#34;
+        Determine if a given blockchain is valid
+        :param chain: &lt;list&gt; A blockchain
+        :return: &lt;bool&gt; True if valid, False if not
+        &#34;&#34;&#34;
+
+        last_block = chain[0]
+        current_index = 1
+
+        while current_index &lt; len(chain):
+            block = chain[current_index]
+            print(f&#39;{last_block}&#39;)
+            print(f&#39;{block}&#39;)
+            print(&#34;\n-----------\n&#34;)
+            # Check that the hash of the block is correct
+            if block[&#39;previous_hash&#39;] != self.hash(last_block):
+                return False
+
+            # Check that the Proof of Work is correct
+            if not self.valid_proof(last_block[&#39;proof&#39;], block[&#39;proof&#39;]):
+                return False
+
+            last_block = block
+            current_index += 1
+
+        return True
+
+    def resolve_conflicts(self):
+        &#34;&#34;&#34;
+        This is our Consensus Algorithm, it resolves conflicts
+        by replacing our chain with the longest one in the network.
+        :return: &lt;bool&gt; True if our chain was replaced, False if not
+        &#34;&#34;&#34;
+
+        neighbours = self.nodes
+        new_chain = None
+
+        # We&#39;re only looking for chains longer than ours
+        max_length = len(self.chain)
+
+        # Grab and verify the chains from all the nodes in our network
+        for node in neighbours:
+            response = requests.get(f&#39;http://{node}/chain&#39;)
+
+            if response.status_code == 200:
+                length = response.json()[&#39;length&#39;]
+                chain = response.json()[&#39;chain&#39;]
+
+                # Check if the length is longer and the chain is valid
+                if length &gt; max_length and self.valid_chain(chain):
+                    max_length = length
+                    new_chain = chain
+
+        # Replace our chain if we discovered a new, valid chain longer than ours
+        if new_chain:
+            self.chain = new_chain
+            return True
+
+        return False</pre>
+<ol type="1" start="4">
+<li><h2 is-upgraded><strong>Using the blockchain</strong></h2>
+</li>
+</ol>
+<p>Postman is used so that you can easily make API calls and try it out for yourself.</p>
+<p>This is a really barebones and simple blockchain, nothing compared to the Bitcoin source code itself but it gives you just enough to understand how a blockchain works.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="P2.1 Working with blockchain: Dev tools" duration="20">
+        <p>Dev tools are important as it reduces development time. </p>
+<p>To interact with the blockchain, it is common to start with <strong>geth</strong>, which will install the whole ethereum blockchain on your computer. However this might take hours, which is not practical if you are trying out blockchain technology.</p>
+<p>Therefore to allow you to work with the Ethereum blockchain without running a full node there are several methods such as; </p>
+<ol type="1" start="1">
+<li><strong>Infura</strong>, a hosted Ethereum node cluster that lets your users run your application without requiring them to set up their own Ethereum node or wallet</li>
+<li><strong>Web3js, </strong>make requests to an individual Ethereum node with <em>JSON RPC </em>in order to read and write data to the network</li>
+<li><strong>HDWalletProvider</strong>, for account management process required when signing transactions on the blockchain such as metamask</li>
+</ol>
+<p>This list is not exhaustive as new and better ways are still being created. </p>
+<p>To work even faster especially for proofs-of-concepts or hackathons, we can use <strong>Ganache</strong>. <strong>Ganache</strong> is a popular personal ethereum client which you can use to run tests, execute commands, and inspect state while controlling how the chain operates. </p>
+<p class="image-container"><img style="width: 624.00px" src="img\61b9fe3cb65f79ff.png"></p>
+<p>Most tutorials have their networks deployed on a mix of <strong>Ganache</strong> and <strong>Ethereum testnet(s) connected via infura</strong>.</p>
+<p>To speed up the development and code testing, we have <strong>Truffle</strong> which is a development environment, testing framework and asset pipeline for Ethereum. <code>truffle init</code> creates the following file structure, which provides the base for our project.</p>
+<p>File structure:</p>
+<ul>
+<li>contracts/: Contains the<a href="https://solidity.readthedocs.io/" target="_blank">Solidity</a> source files for our smart contracts. There is an important contract in here called <code>Migrations.sol</code>, which we&#39;ll talk about later.</li>
+<li>migrations/: Truffle uses a migration system to handle smart contract deployments. A migration is an additional special smart contract that keeps track of changes.</li>
+<li>test/: Contains both JavaScript and Solidity tests for our smart contracts</li>
+<li>truffle-config.js: Truffle configuration file</li>
+</ul>
+<p>Below is a short walkthrough of truffle commands for creating and setting up your project. </p>
+<p>1. <em>truffle init</em> : generates sample files for solidity contracts</p>
+<p>2. edit solidity smart contracts</p>
+<p>3. <em>truffle compile</em> : compiles .sol into .json format</p>
+<p>4. <em>ganache-cli</em> : starts ganache-cli, make sure ganache-cli is already installed (this step is only for deployment on ganache, else skip this step)</p>
+<p>5. create a 2deploycontracts.js file with code to export module</p>
+<p>6. update truffle.js configuration for module.exports networks</p>
+<p>7. <em>truffle migrate</em> (--network ropsten) (--reset): deployment of contracts on ganache/ ropsten / redeploy contract even though one with the same solidity code has been previously deployed.</p>
+<p>- <em>truffle console</em> : console to run web3apis to interact with web3 JS apis (link below) (e.g. web3.eth.getTransactionReceipt or calling functions from the smart contracts by using</p>
+<p>Bounties.deployed().then(function(instance) {...})</p>
+<p>If you haven&#39;t decided on a code editor, use <strong>Visual Studio Code</strong>! There&#39;s dark mode, syntax highlighting is pretty and there is a decent <strong>Solidity Syntax Plugin by Juan Blanco</strong> for Visual Studio Code you can download which is especially useful since many tutorials online have outdated solidity code and this handy code editor can remind you of the new solidity code syntax.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="P2.2 Working with blockchain: Debugging" duration="20">
+        <p>From the pace at which the development tools in blockchains are developed and new versions of solidity language are pushed out, it is common that the tutorial you have been following is outdated and you&#39;ll are sitting in broken code. When in doubt, google! You&#39;ll be likely directed to issues on github pages or stackoverflow and you can follow their instructions.</p>
+<p><em>But what should i do if i don&#39;t know where the problem is? </em>It goes without saying that a good understanding of would be very beneficial to the debugging process. I highly recommend getting started with the articles on the ethereum developers page where just the introductory section is enough to get a good understanding of how the compilation and deployment process works. The truffle links they provide are also helpful if you are looking to write your projects in truffle. Here&#39;s the page: <a href="https://ethereum.org/developers/" target="_blank">https://ethereum.org/developers/</a></p>
+<p>If you are looking to develop an app which requires reading the state of some part of the blockchain, knowledge of web3js and how metamask works would be helpful.</p>
+<p><em>Sometimes there is more than one problem.</em> When I was editing the code for the project on voting, I noticed that the Event always on loading if metamask is enabled in browser. So i went to the place in the code where I check if there is a current provider for web3 and perform a few console logs to check the state of my accounts and voila! I found my problem: Web3.getaccounts returned an empty array. With help from stack overflow i picked the possible underlying problems (solvable with actions):</p>
+<ul>
+<li>Problem 1: metamask would not be injected on local files, so in order to access my metamask account, use the Chrome extension <strong>Web Server for Chrome</strong> to convert local file (e.g //newfile) to https://127.00.02</li>
+<li>Problem 2: To unlock my account, I have to write code enable metamask (which prompts the user to allow site access to the account) as part of metamask&#39;s privacy feature (new!)</li>
+</ul>
+<p>As you can see, some knowledge of how these things work is essential to pinpoint the location of the error (in this case I checked web3.currentProvider). And from there onwards stack overflow and github issues help to identify the deprecated features and other developer&#39;s workaround to the issue with the correct keywords.</p>
+<p>Other interesting issues:</p>
+<ul>
+<li>Callback for web3js required </li>
+<li>Restoration of accounts on metamask and what I learnt about how accounts are generated on metamask</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Next Steps" duration="0">
+        <p>Congratulations! You have reached the end of this guide.</p>
+<p>Do head over to the <a href="https://github.com/NVAITC/ai-lab" target="_blank"><strong>GitHub repository</strong></a> to learn more about the AI Lab container.</p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+
+</body>
+</html>
