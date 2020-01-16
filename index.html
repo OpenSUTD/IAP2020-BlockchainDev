@@ -79,7 +79,7 @@ New RPC URL: https://k0tifewhc0:AMYdoFjO2rD4Ch8ArKY6dEBTSpOFUMCDX5zti_NJp2g@k0mv
 <p class="image-container"><img style="width: 354.00px" src="img\fc0a7e60f397535a.png"></p>
 <h2 is-upgraded><strong>Step 3</strong></h2>
 <p><em>Add your account.</em></p>
-<p>Choose a private key from the <a href="https://drive.google.com/file/d/146VtWP5zwMnbhT0YPlJPSmDuL0fvIAwy/view?usp=sharing" target="_blank">list here</a> and add your name to the column so others don&#39;t take it. You are allowed to do anything with each others&#39; accounts. Each account will be funded 1000 ETH.</p>
+<p>Choose a private key from the list here and add your name to the column so others don&#39;t take it. You are allowed to do anything with each others&#39; accounts. Each account will be funded 1000 ETH.</p>
 <p><strong>As a bonus, the address with the highest ETH or points will win a prize.</strong></p>
 <p>Click the circular icon on the top right, then &#34;Import Account&#34;.</p>
 <p class="image-container"><img style="width: 355.00px" src="img\1d9580fbeb491c66.png"></p>
@@ -173,7 +173,7 @@ npm run dev</pre>
 <p>Hyperledger Fabric - Client, Peer, Orderer</p>
 <table>
 <tr><td colspan="1" rowspan="1"><p>Client</p>
-</td><td colspan="1" rowspan="1"><p>Peer</p>
+</td><td colspan="1" rowspan="1"><p>Peer   </p>
 </td><td colspan="1" rowspan="1"><p>Orderer</p>
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p>Submits an actual transaction-invocation to the endorsers, and broadcasts transactions-proposals to the orderer</p>
@@ -204,7 +204,7 @@ npm run dev</pre>
 <p class="image-container"><img style="width: 602.00px" src="img\a0393350c17452f.png"></p>
 <p>Decentralised Autonomous Organisations allow participants to carry out democratic processes without trusting any particular institution as a central party. This could be through decentralised means to propose ideas, vote on ideas, making decisions for the organisation or individuals all carried out through smart contracts.</p>
 <p><strong>MakerDAO </strong>- provides a stable digital currency. The DAO sets the ‘stability fee&#39;, ‘collateralization ratio&#39; and triggers an ‘emergency shutdown&#39; if needed.</p>
-<aside class="warning"><p>References used for this concept</p>
+<aside class="warning"><p>References used for this concept  </p>
 <p>1. <a href="https://medium.com/@VitalikButerin/the-meaning-of-decentralization-a0c92b76a274" target="_blank">https://medium.com/@VitalikButerin/the-meaning-of-decentralization-a0c92b76a274</a></p>
 <p>2. <a href="https://en.bitcoin.it/wiki/Network" target="_blank">htps://en.bitcoin.it/wiki/Network</a></p>
 <p>3. <a href="https://hyperledger-fabric.readthedocs.io/en/release-1.4/arch-deep-dive.html" target="_blank">https://hyperledger-fabric.readthedocs.io/en/release-1.4/arch-deep-dive.html</a></p>
@@ -272,7 +272,7 @@ npm run dev</pre>
 <p>The <strong>pseudonymity </strong>that comes with most blockchains is that the address is not traced to a physical identity.</p>
 <aside class="special"><p><em>Even though the blockchain is considered public and immutable, individual transactions can be anonymous.</em></p>
 </aside>
-<p>It&#39;s this pseudonymity that made blockchain technology an ideal method for illegal activity in its earlier days such as through <a href="https://fortune.com/2017/10/02/bitcoin-sale-silk-road/" target="_blank">Silk Road</a>.</p>
+<p>It&#39;s this pseudonymity that made blockchain technology an ideal method for illegal activity in its earlier days such as through <a href="https://cointelegraph.com/news/silk-road-darknet-marketplace-founder-btc-will-reach-100-000-in-2020" target="_blank">Silk Road.</a></p>
 <p>However <strong>once an address is linked to an individual, this pseudonymity is immediately broken</strong> and can be <a href="https://www.ifca.ai/fc14/papers/fc14_submission_11.pdf" target="_blank">easily traced</a>.</p>
 <h2 is-upgraded><strong>Issues</strong></h2>
 <p>The problems with being traceable is the lack of privacy. One key concern is the <a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation" target="_blank">General Data Protection Regulation (GDPR)</a> that would make it impossible to conduct business on the blockchain. </p>
@@ -302,7 +302,7 @@ npm run dev</pre>
 <p><em>Making transactions traceable</em></p>
 <p class="image-container"><img style="width: 602.00px" src="img\1f03b38f809259a2.png"></p>
 <p>From &#34;When to chains combine; supply chain meets blockchain&#34; by Deloitte</p>
-<p><em>Making transactions untraceable</em></p>
+<p><em>Making transactions untraceable </em></p>
 <p class="image-container"><img style="width: 624.00px" src="img\a5a8cf9363656cd9.png"></p>
 <p>From the Princeton Bitcoin book</p>
 <p><strong>Nightfall </strong>- private transactions on the Ethereum blockchain using zk-snarks by EY</p>
@@ -527,9 +527,733 @@ class Blockchain(object)
 
       </google-codelab-step>
     
+      <google-codelab-step label="A better blockchain by mechanism design" duration="40">
+        <p>Barnabé Monnot, Robust Incentives Group, Ethereum Foundation</p>
+<p><a href="https://twitter.com/barnabemonnot" target="_blank">@barnabemonnot</a></p>
+<p>What do we mean when we talk about incentives?</p>
+<ul>
+<li>Game theory</li>
+<li>Mechanism design</li>
+</ul>
+<p>Game-theoretic view of the Bitcoin protocol</p>
+<ul>
+<li>Proof-of-work</li>
+<li>Protocol and games</li>
+<li>Selfish mining</li>
+</ul>
+<p>Transaction economics: Auctions and tolls</p>
+<ul>
+<li>First-price, second-price auctions</li>
+<li>EIP 1559: An ERP-style fee</li>
+</ul>
+<p>Hacking the games we play</p>
+<ul>
+<li>An anti-mechanism to hack second-price auctions</li>
+<li>Bribing voters</li>
+</ul>
+<p><a href="https://docs.google.com/presentation/d/10LR57HTiSs-8pBpNeXKoJ13zOPxzOrLI8Avs3FSDsz0/edit#slide=id.p" target="_blank">Slides here</a></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="DeFi" duration="40">
+        <p>Jocelyn Chang,jocelyn@makerdao.com</p>
+<p>www.makerdao.com</p>
+<p>1. What is DeFi?</p>
+<p>2. Difference between traditional finance and decentralized finance</p>
+<p>3. Unbundling of financial intermediary functions</p>
+<p>4. DeFi Ecosystem and different DeFi tools</p>
+<p>5. A few real world uses cases of MakerDAO</p>
+<p>6. The total usage volume of DeFi</p>
+<p>7. Benefits and concerns of DeFi</p>
+<p><a href="https://drive.google.com/drive/folders/1lgsti3TaQusW0_2_kbVZcgWiay9FdbXe" target="_blank">Slides here</a></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Knowing your environment" duration="15">
+        <p><strong>For today, before you ask the workshop organisers, do a quick Google first or check Stackoverflow. We want you to try and debug by yourself first as part of the learning process. After 10 minutes, if you&#39;re still stuck, let us know. However we will be walking around throughout the day to ensure you&#39;re having a fruitful experience.</strong></p>
+<h2 is-upgraded><strong>Optimising the participant experience</strong></h2>
+<p>We will separate you into pairs and match according to your experience in programming. Today we will be adopting the pedagogy of <a href="https://hackernoon.com/the-ultimate-guide-to-pair-programming-b606625bc784" target="_blank">pair programming</a> so we can learn from each other.</p>
+<h2 is-upgraded><strong>Using Remix</strong></h2>
+<p class="image-container"><img style="width: 225.00px" src="img\8b5fb0d4d2844564.png"></p>
+<p><a href="https://remix.ethereum.org/" target="_blank">Remix </a>will be your main <a href="https://en.wikipedia.org/wiki/Integrated_development_environment" target="_blank">IDE </a>for today. We use it because it&#39;s convenient to compile and test your contracts out quickly.</p>
+<h2 is-upgraded><strong>Ropsten</strong></h2>
+<p>To gain some experience what it&#39;s like developing on Ethereum, we will use test ether from the <a href="https://ethereum.stackexchange.com/questions/13534/what-is-actually-ropsten-what-is-a-new-network" target="_blank">Ropsten network</a>. You can do this by using the <a href="https://faucet.ropsten.be/" target="_blank">Ropsten Ethereum Faucet</a>.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="&#34;Smart&#34; contracts" duration="45">
+        <p>Let&#39;s dive right into real smart contracts on the blockchain. Smart contracts are compiled before being migrated onto the blockchain. Thus you need to decompile them.</p>
+<ol type="1" start="1">
+<li><strong>Choose </strong>a smart contract from <a href="https://www.stateofthedapps.com/platforms/ethereum" target="_blank">State of the dapps</a></li>
+<li><strong>Decompile </strong>it with <a href="https://www.eveem.org/api" target="_blank">eveem</a> by Tomas Kolinko</li>
+<li><strong>Understand</strong> the decompiled code, formatting it properly might help!</li>
+<li><strong>Discuss </strong>with your partner what this smart contract does</li>
+<li><strong>Share</strong> with the class</li>
+</ol>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Syllabus Overview" duration="40">
+        <p>Today we will learn about Ethereum development through working with several smart contracts and dapps. Each segment is separated into:</p>
+<ol type="1" start="1">
+<li><strong>Deploy </strong>the smart contract and explore every function</li>
+<li><strong>Discuss</strong> if the smart contract fulfills its intended objectives well, how it can do better in terms of gas use and security, and how one might induce unintended behaviour in the smart contract.</li>
+<li><strong>Develop </strong>based on our earlier discussion, new functions or fixes for the smart contract</li>
+<li><strong>Digest</strong> what you&#39;ve just learned by searching for other real-life examples</li>
+</ol>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Mortal Greeter" duration="40">
+        <h2 is-upgraded><strong>Deploy</strong></h2>
+<p>&#34;Hello World&#34; equivalent to familiarise users with smart contracts via remix GUI</p>
+<ol type="1" start="1">
+<li>navigate to plugins to activate compilers and deployment</li>
+<li>paste code for <a href="https://github.com/ethereum/ethereum-org/blob/master/views/content/greeter.md" target="_blank">Mortal/Greeter</a></li>
+<li>select proper compiler and option for &#34;autocompile&#34;</li>
+<li>switch environment from &#34;Javascript VM&#34; to &#34;injected web3&#34; to connect to metamask account which should be set on the Ropsten testnet</li>
+<li>deploy contract and check deployment on etherscan</li>
+<li><code>greet</code> function, post the transaction id onto google docs and let people try the <code>greet</code> function with my contract</li>
+</ol>
+<pre>pragma solidity &gt;=0.4.22 &lt;0.6.0;
+
+contract Mortal {
+    /* Define variable owner of the type address */
+    address owner;
+
+    /* This constructor is executed at initialization and sets the owner of the contract */
+    constructor() public { owner = msg.sender; }
+
+    /* Function to recover the funds on the contract */
+    function kill() public { if (msg.sender == owner) selfdestruct(msg.sender); }
+}
+/*inheritors*/
+contract Greeter is Mortal {
+    /* Define variable greeting of the type string */
+    string greeting;
+
+    /* This runs when the contract is executed */
+    /* explain memory */
+    /* public functions are functions that can be called by people while private functions are functions that can only be called by contracts */
+    constructor(string memory _greeting) public {
+        greeting = _greeting;
+    }
+
+    /* Main function */
+    function greet() public view returns (string memory) {
+        return greeting;
+    }
+}</pre>
+<h2 is-upgraded><strong>Discuss</strong></h2>
+<ol type="1" start="1">
+<li>What do you think of the deployment process?</li>
+<li>What happens if you want to change the greeting?</li>
+</ol>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Roommate smart contract agreement" duration="40">
+        <h2 is-upgraded><strong>Deploy</strong></h2>
+<aside class="warning"><p>Please ensure you use solidity compiler v0.4.25</p>
+</aside>
+<p>You are able to send Ether to your agreement, set new terms, and withdraw Ether if an agreement has been violated. </p>
+<ul>
+<li>Replace <code>**</code> with your address and your roommate&#39;s address</li>
+<li>The <code>Id</code> acts like a password and you need to put the same Id as your address&#39; position in the array it is stored</li>
+</ul>
+<pre>pragma experimental ABIEncoderV2;
+
+contract RoomieAgreement {
+    //Events are to pass information when something happens on the blockchain to your front-end
+    event NewAgreement (uint agreementId, string agreementTerms);
+    event NewDispute (uint disputeId, string dispute, uint _claim, address claimant);
+    //Variables must be declared
+    uint agreementId = 0;
+    uint minDepositVal = 1;
+
+    //Solidity only support integers
+    uint minDeposit = minDepositVal / 1000;
+    uint totalDeposit = 0;
+    uint disputeId = 0;
+    //Structs let you create data types with multiple properties
+    struct agreement {
+        uint agreementId;
+        string agreementTerms;
+    }
+    
+    // Declare an array called agreements of type agreement (a struct) that is publicly viewable
+    agreement[] public agreements;
+    
+    //hardcoded addresses of your roomies
+    address[] public roomies = [**,**];
+    
+    // Mappings are like dictionaries, it&#39;s 1 to 1
+    mapping (address =&gt; uint) public roomieDeposits;
+    
+    // This function checks that you submit the minimum deposit and includes it
+    // The payable modifier let&#39;s you send money to the smart contract through this function
+    function addDeposit() public payable {
+        //require checks a condition. if it fails, it kills the current transaction and reverts
+        require(msg.value &gt; minDeposit);
+        roomieDeposits[msg.sender] = msg.value;
+        totalDeposit = totalDeposit+msg.value;
+    }
+    
+    // This is actually an experimental function but let&#39;s you check the agreements
+    function viewAgreements() public view returns (agreement[]) {
+        return agreements;
+    }
+    
+    //This lets you view the current total deposits
+    function viewDeposits () public view returns (uint) {
+        return totalDeposit;
+    }
+    // This function checks that you picked your right Id and adds your new agreement
+    function createAgreement(string _agreementTerms, uint _roomieId) public {
+        require(roomies[_roomieId-1] == msg.sender);
+        agreementId++;
+        agreements.push(agreement(agreementId,_agreementTerms));
+
+        // Event is fired off when this function is complete
+        emit NewAgreement(agreementId,_agreementTerms);
+    }
+    
+    // This function lets you execute a claim and will send it to the claimant
+    function createDispute(uint _dispute, uint _claim, uint _roomieId) public {
+        address claimant = msg.sender;
+        require(roomies[_roomieId-1] == msg.sender);
+        require(_dispute &lt;= agreementId);
+        disputeId++;
+        string dispute = agreements[_dispute-1].agreementTerms;
+        //Event is fired off when this function is complete
+        totalDeposit = totalDeposit-_claim;
+        claimant.transfer(_claim);
+        emit NewDispute(disputeId, dispute, _claim, claimant);
+    }
+}</pre>
+<h2 is-upgraded><strong>Discuss</strong></h2>
+<ol type="1" start="1">
+<li>Privacy - you have put your contract address on the blockchain</li>
+<li>Fake claims - your roomie can essentially just claim all the money anytime</li>
+<li>Lack of adjudication - how do you know who was right or wrong in a dispute?</li>
+<li>Gas guzzling - are there more efficient ways to write this contract?</li>
+<li>Game theory - how do you incentivise someone to not abuse the claiming function?</li>
+</ol>
+<h2 is-upgraded><strong>Develop</strong></h2>
+<p><strong>Advanced: </strong>Implement a solution to any one of these problems we have discussed.</p>
+<p><strong>Intermediate:</strong> Create a function that adds another party as an adjudicator</p>
+<pre>bool disputeApproval = false;
+    function approveDisputeClaim() public {
+        require(msg.sender==roomies[2]);
+        disputeApproval = true;
+    }
+    function createDisputeAdjudication(uint _dispute, uint _claim, uint _roomieId) {
+        require(disputeApproval == true);
+        address claimant = msg.sender;
+        require(roomies[_roomieId-1] == msg.sender);
+        require(_dispute &lt;= agreementId);
+        disputeId++;
+        string dispute = agreements[_dispute-1].agreementTerms;
+        //Event is fired off when this function is complete
+        
+        totalDeposit = totalDeposit-_claim;
+        claimant.transfer(_claim);
+        disputeApproval = false;
+        emit NewDispute(disputeId, dispute, _claim, claimant);
+
+    }</pre>
+<p><strong>Beginner</strong>: Do some research on escrow contracts and share with the workshop</p>
+<h2 is-upgraded><strong>Digest</strong></h2>
+<ul>
+<li><a href="https://medium.com/@pranav.89/smart-contracting-simplified-escrow-in-solidity-ethereum-b19761e8fe74" target="_blank">Escrow smart contract tutorial</a></li>
+<li><a href="https://lawgazette.com.sg/feature/introduction-to-programmable-contracts-a-dispute-resolution-perspective/" target="_blank">Introduction to Programmable Contracts: A Dispute Resolution Perspective</a></li>
+<li><a href="https://mitmedialab.github.io/2019-MIT-Computational-Law-Course/session-lecture-smart-contracts-and-the-law.html" target="_blank">Smart Contracts in computational Law - by MIT Media Lab</a></li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Decentralised confessions page" duration="40">
+        <h2 is-upgraded><strong>Deploy</strong></h2>
+<p>This is a message board that can hold up to 10 messages and allows you to post messages.</p>
+<p>You will get the chance to call other people&#39;s contracts once they have uploaded.</p>
+<pre>pragma solidity ^0.4.18;
+
+//Contract is just like classes
+contract MessageBoard {
+    //Defining User structure. address is a variable type from solidity
+    struct User {
+        address _address;
+        string name;
+        bool isValue;
+    }
+
+    //Defining Message structure. You can see it have User type member
+    struct Message {
+        string text;
+        User _user;
+    }
+    
+    Message[10] public messageBoardLogs;
+    
+    //Declaring an event
+    event MessageCreated (string text, address _address, string name, bool isValue  );
+
+    //Constructor
+    constructor() public {
+
+    }
+
+    //mapping is a key value store. We are specified type of key and value
+    mapping (address =&gt; User) users;
+
+    // public function, which is returning boolean
+    function setUsername(string memory name) public returns (bool) {
+        //require() is throwing error, if the input is not true
+        require(userExists(msg.sender) == false, &#34;userAddress has been previously registered&#34;);
+        //msg.sender is the address, from where the signUp was called.
+        users[msg.sender] = User(msg.sender, name, true);
+        return true;
+    }
+
+    //8 bit unsigned integer (so no negative values).
+    uint8 public messageCount = 0;
+    
+    //it is creating an event Message with text and user.
+    function sendMessage (string text) public returns (bool) {
+        //require() is throwing error, if the input is not true
+        require(userExists(msg.sender) == true,&#34;msg.sender is not added into users&#34;);
+        messageCount++;
+        emit MessageCreated(text, users[msg.sender]._address,users[msg.sender].name,true);
+        messageBoardLogs[messageCount] = Message(text, users[msg.sender]);
+        return true;
+    }
+    
+    //We are using view keyword, to specify that it is not modified the state of contract. It will consume less resources. 
+    function userExists(address userAddress) view public returns (bool) {
+        return users[userAddress].isValue;
+    }
+    function readMessage(uint messageIndex) view public returns (string text){
+        require(messageIndex&lt;=messageCount,&#34;message index out of range&#34;);
+        return messageBoardLogs[messageIndex].text;
+    }
+
+
+}</pre>
+<h2 is-upgraded><strong>Discuss</strong></h2>
+<ul>
+<li>Can there be a better structure for how messageboard keeps messages? The current deployed messageboard can only keep track of the first 10 messages to be written to the board. How should we rewrite the code such that the last 10 messages are kept instead?</li>
+<li>Useful feature: currently messages can only be accessed by message index, how about a feature to access latest message?</li>
+<li>Would a dynamic array which increases in size as more people write to the messageboard be better than our fixed-length message board?</li>
+<li>What are some ways to disincentivise spam on the messageboard?</li>
+</ul>
+<h2 is-upgraded><strong>Develop</strong></h2>
+<p><strong>Advanced: </strong>Implement a solution to any one of these problems we have discussed.</p>
+<p><strong>Intermediate</strong>: devise a solution for the 10 message limit</p>
+<pre>    //messageBoardLogs can store up to 20 messages
+    Message[21] messageBoardLogs;
+    //state change when messageBoardLogs is full
+    bool messageBoardLogsFull = false;
+    //Declaring an event
+    event MessageCreated (string text, address _address, string name, bool isValue  );
+    //empty constructor will be generated at compile-time if code is not provided.
+    //constructor() public {}
+    //mapping is a key value store. We are specified type of key and value
+    mapping (address =&gt; User) users;
+    // public function, which is returning boolean
+    function setUsername(string memory name) public returns (bool) {
+        //require() is throwing error, if the input is not true
+        require(userExists(msg.sender) == false, &#34;userAddress has been previously registered&#34;);
+        //msg.sender is the address, from where the signUp was called.
+        users[msg.sender] = User(msg.sender, name, true);
+        return true;
+    }
+
+    //8 bit unsigned integer (so no negative values).
+    uint8 public messageCount = 0;
+    //it is creating an event Message with text and user.
+    function sendMessage (string memory text) public returns (bool) {
+        //require() is throwing error, if the input is not true
+        require(userExists(msg.sender) == true,&#34;msg.sender is not added into users&#34;);
+        //replaces message when threshold message number exceeded
+        if(messageCount&lt;=20){
+            messageCount++;
+        }else{
+            messageBoardLogsFull = true;
+            messageCount = 1;
+        }
+        emit MessageCreated(text, users[msg.sender]._address,users[msg.sender].name,true);
+        messageBoardLogs[messageCount] = Message(text, users[msg.sender]);
+        return true;
+    }
+  function userExists(address userAddress)  public view returns (bool) {
+        return users[userAddress].isValue;
+    }
+    function readMessage(uint messageIndex)  public view returns (string memory text){
+        if(messageBoardLogsFull == false){
+            require(messageIndex&lt;=messageCount,&#34;message index out of range&#34;);
+        }else{
+            require(messageIndex&lt;=21,&#34;message index out of range&#34;);
+        }
+        return messageBoardLogs[messageIndex].text;
+    }
+    function readLatestMessage() public view returns(string memory text){
+        require(messageCount&gt;0,&#34;there are no messages in messageBoardLogs&#34;);
+        return messageBoardLogs[messageCount].text;
+    }
+
+
+}</pre>
+<p><strong>Beginner</strong>: what are some ways that people have used blockchain to share messages?</p>
+<h2 is-upgraded><strong>Digest</strong></h2>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Voting on the blockchain" duration="40">
+        <h2 is-upgraded><strong>Deploy</strong></h2>
+<p>This contract simulates a simple voting process. There are 2 candidates you can vote for.</p>
+<pre>pragma solidity ^0.5.1;
+
+contract Election {
+    // Model a Candidate
+    struct Candidate {
+        uint id;
+        string name;
+        uint voteCount;
+        // uint _candidateId;
+    }
+
+    // Store accounts that have voted
+    mapping(address =&gt; bool) public voters;
+    // Store Candidates
+    // Fetch Candidate
+    mapping(uint =&gt; Candidate) public candidates;
+    // Store Candidates Count
+    uint public candidatesCount;
+
+    // voted event
+    event votedEvent (
+        uint indexed _candidateId
+    );
+
+    constructor () public {
+        addCandidate(&#34;Candidate 1&#34;);
+        addCandidate(&#34;Candidate 2&#34;);
+    }
+
+    function addCandidate (string memory _name) private {
+        candidatesCount ++;
+        candidates[candidatesCount] = Candidate(candidatesCount, _name, 0);
+    }
+
+    function vote (uint _candidateId) public {
+        // require that they haven&#39;t voted before
+        require(!voters[msg.sender], &#34;if voter is not msg.sender&#34;);
+
+        // update candidate vote Count
+        candidates[_candidateId].voteCount ++;
+
+        // trigger voted event
+        emit votedEvent(_candidateId);
+    }
+    
+}</pre>
+<h2 is-upgraded><strong>Discuss</strong></h2>
+<ul>
+<li>How might we bribe the voters? (and get away with it)</li>
+<li>Can we implement a time limit to voting?</li>
+<li>Can we make the vote private?</li>
+<li>Is the voting process secure?</li>
+</ul>
+<h2 is-upgraded><strong>Develop</strong></h2>
+<p><strong>Advanced: </strong>Implement a solution to any one of these problems we have discussed.</p>
+<p><strong>Intermediate: </strong>Implement a way you can check that the candidate is valid and the voter votes only once.</p>
+<pre>    function vote (uint _candidateId) public {
+        // require that they haven&#39;t voted before
+        require(!voters[msg.sender], &#34;if voter is not msg.sender&#34;);
+
+        // require a valid candidate
+        require(_candidateId &gt; 0 &amp;&amp; _candidateId &lt;= candidatesCount,&#34;if candidate not valid&#34;);
+
+        // record that voter has voted
+        voters[msg.sender] = true;
+
+        // update candidate vote Count
+        candidates[_candidateId].voteCount ++;
+
+        // trigger voted event
+        emit votedEvent(_candidateId);
+    }</pre>
+<p><strong>Beginner: </strong>what other aspects of the democratic process could be decentralised?</p>
+<h2 is-upgraded><strong>Digest</strong></h2>
+<ul>
+<li><a href="https://colony.io/" target="_blank">Colony.io</a></li>
+<li><a href="https://law.stanford.edu/projects/blockchain-democracy-digital-governance-in-the-eu-and-the-us/" target="_blank">Blockchain Democracy: Digital Governance in the EU and the US</a></li>
+<li><a href="https://www.computerworld.com/article/3430697/why-blockchain-could-be-a-threat-to-democracy.html" target="_blank">Why blockchain-based voting could threaten democracy</a></li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="A-very-flawed Kahoot" duration="40">
+        <h2 is-upgraded><strong>Deploy</strong></h2>
+<p>You&#39;ve deployed a local front-end connected to the decentralised attendance and question-answer dapp.</p>
+<pre>pragma solidity ^0.5.0;
+
+
+
+contract Users {
+    // data structure that stores a user
+    
+    bytes32 answer;
+    
+    struct User {
+        string name;
+        string status;
+        address walletAddress;
+        uint createdAt;
+        uint updatedAt;
+        uint points;
+    }
+
+    // it maps the user&#39;s wallet address with the user ID
+    mapping (address =&gt; uint) public usersIds;
+
+    // Array of User that holds the list of users and their details
+    User[] public users;
+
+    // event fired when an user is registered
+    event newUserRegistered(uint id);
+
+    // event fired when the user updates his status or name
+    event userUpdateEvent(uint id);
+
+
+
+    // Modifier: check if the caller of the smart contract is registered
+    modifier checkSenderIsRegistered {
+            require(isRegistered());
+            _;
+    }
+
+
+
+    /**
+     * Constructor function
+     */
+    constructor() public
+    {
+        // NOTE: the first user MUST be emtpy: if you are trying to access to an element
+        // of the usersIds mapping that does not exist (like usersIds[0x12345]) you will
+        // receive 0, that&#39;s why in the first position (with index 0) must be initialized
+        addUser(address(0x0), &#34;&#34;, &#34;&#34;);
+
+        // Some dummy data
+        addUser(address(0x333333333333), &#34;Leo Brown&#34;, &#34;Available&#34;);
+        addUser(address(0x111111111111), &#34;John Doe&#34;, &#34;Very happy&#34;);
+        addUser(address(0x222222222222), &#34;Mary Smith&#34;, &#34;Not in the mood today&#34;);
+    }
+    
+    function postAnswer(string memory _answer) public returns(bytes32){
+        require(msg.sender==** || msg.sender==** || msg.sender==**);
+        answer = keccak256(abi.encode(_answer));
+    }
+
+
+    /**
+     * Function to register a new user.
+     *
+     * @param _userName                 The displaying name
+     * @param _status        The status of the user
+     */
+    function registerUser(string memory _userName, string memory _status) public
+    returns(uint)
+    {
+            return addUser(msg.sender, _userName, _status);
+    }
+
+
+
+    /**
+     * Add a new user. This function must be private because an user
+     * cannot insert another user on behalf of someone else.
+     *
+     * @param _wAddr                 Address wallet of the user
+     * @param _userName                Displaying name of the user
+     * @param _status            Status of the user
+     */
+    function addUser(address _wAddr, string memory  _userName, string memory _status) private
+    returns(uint)
+    {
+        // checking if the user is already registered
+        uint userId = usersIds[_wAddr];
+        require (userId == 0);
+
+        // associating the user wallet address with the new ID
+        usersIds[_wAddr] = users.length;
+        uint newUserId = users.length++;
+        // storing the new user details
+        users[newUserId] = User({
+                name: _userName,
+                status: _status,
+                walletAddress: _wAddr,
+                createdAt: now,
+                updatedAt: now,
+            points: 0
+        });
+
+        // emitting the event that a new user has been registered
+        emit newUserRegistered(newUserId);
+
+        return newUserId;
+    }
+
+
+
+    /**
+     * Update the user profile of the caller of this method.
+     * Note: the user can modify only his own profile.
+     *
+     * @param _newUserName        The new user&#39;s displaying name
+     * @param _newStatus         The new user&#39;s status
+     */
+    function updateUser(string memory _newUserName, string memory _newStatus) checkSenderIsRegistered public
+    returns(uint)
+    {
+            // An user can modify only his own profile.
+            uint userId = usersIds[msg.sender];
+
+            User storage user = users[userId];
+        if (keccak256(abi.encode(_newStatus)) == answer){
+            user.points += 10;
+        }
+            user.name = _newUserName;
+            user.status = _newStatus;
+            user.updatedAt = now;
+
+            emit userUpdateEvent(userId);
+
+
+            return userId;
+    }
+
+
+
+    /**
+     * Get the user&#39;s profile information.
+     *
+     * @param _id         The ID of the user stored on the blockchain.
+     */
+    function getUserById(uint _id) public view
+    returns(
+            uint,
+            string memory,
+            string memory,
+            address,
+            uint,
+            uint,
+            uint
+    ) {
+            // checking if the ID is valid
+            require( (_id &gt; 0) || (_id &lt;= users.length) );
+
+            User memory i = users[_id];
+
+            return (
+                    _id,
+                    i.name,
+                    i.status,
+                    i.walletAddress,
+                    i.createdAt,
+                    i.updatedAt,
+                    i.points
+            );
+    }
+
+
+
+    /**
+     * Return the profile information of the caller.
+     */
+    function getOwnProfile() checkSenderIsRegistered public view
+    returns(
+            uint,
+            string memory,
+            string memory,
+            address,
+            uint,
+            uint,
+            uint
+    ) {
+            uint id = usersIds[msg.sender];
+
+            return getUserById(id);
+    }
+
+
+
+    /**
+     * Check if the user that is calling the smart contract is registered.
+     */
+    function isRegistered() public view returns (bool)
+    {
+            return (usersIds[msg.sender] &gt; 0);
+    }
+
+
+
+    /**
+     * Return the number of total registered users.
+     */
+    function totalUsers() public view returns (uint)
+    {
+        // NOTE: the total registered user is length-1 because the user with
+        // index 0 is empty check the contructor: addUser(address(0x0), &#34;&#34;, &#34;&#34;);
+        return users.length - 1;
+    }
+
+}</pre>
+<h2 is-upgraded><strong>Discuss</strong></h2>
+<ul>
+<li>What are some added functions that would be useful?</li>
+<li>Why is this question-answer app flawed?</li>
+</ul>
+<h2 is-upgraded><strong>Develop</strong></h2>
+<p>This is our last dapp for the day, thus it is <strong><em>CAPSTONE TIME</em></strong>.</p>
+<p>Fully design and implement a new feature for this dapp.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Digest" duration="40">
+        <p>Process of creating a dapp (beginners)</p>
+<ul>
+<li><strong>Design</strong> contract functions with retrieval of information in mind and think about any potential vulnerabilities arising from the code</li>
+<li><strong>Test </strong>out your contract functions on remix ide to make sure that the contract works as expected</li>
+<li><strong>Initialise </strong>sample project using <code>truffle init</code> to create your own sample project and copy and paste the solidity code</li>
+<li><strong>Create</strong> front end html and link it up with web3js to interact with the contract</li>
+<li><strong>Configure</strong> network in <code>truffle.js</code> or <code>truffle-config.js</code> for deployment of contracts</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Further opportunities" duration="5">
+        <p>The University ecosystem in Singapore, our <a href="https://blockchainresearchcollective.github.io/" target="_blank">blockchain research collective</a>.</p>
+<p>The blockchain industry in Singapore, <a href="https://opennodes.com/" target="_blank">OpenNodes</a>.</p>
+
+
+      </google-codelab-step>
+    
       <google-codelab-step label="Next Steps" duration="0">
-        <p>Congratulations! You have reached the end of this guide.</p>
-<p>Do head over to the <a href="https://github.com/NVAITC/ai-lab" target="_blank"><strong>GitHub repository</strong></a> to learn more about the AI Lab container.</p>
+        <p>Congratulations! You have reached the end of this workshop.</p>
 
 
       </google-codelab-step>

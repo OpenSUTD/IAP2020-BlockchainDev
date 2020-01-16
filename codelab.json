@@ -3,14 +3,14 @@
   "format": "html",
   "prefix": "https://storage.googleapis.com",
   "mainga": "UA-49880327-14",
-  "updated": "2020-01-15T15:39:22Z",
+  "updated": "2020-01-16T18:22:33Z",
   "id": "blockchain-dev-conversant",
-  "duration": 200,
+  "duration": 625,
   "title": "Blockchain Dev Workshop",
   "authors": "QZ",
   "summary": "This is the material for the Blockchain Development workshop as part of Day One's material.",
   "source": "1GDFAGay3sx8rQglnyo4ltP50dW26GGkSDHVdvWXosXc",
-  "theme": "web",
+  "theme": "setup",
   "status": [
     "draft"
   ],
