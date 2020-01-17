@@ -18,7 +18,7 @@
       color: red;
     }
   </style>
-  <script>
+    <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
@@ -783,7 +783,7 @@ contract RoomieAgreement {
         <h2 is-upgraded><strong>Deploy</strong></h2>
 <p>This is a message board that can hold up to 10 messages and allows you to post messages.</p>
 <p>You will get the chance to call other people&#39;s contracts once they have uploaded.</p>
-<pre>pragma solidity ^0.4.18;
+<pre>pragma solidity ^0.4.22;
 
 //Contract is just like classes
 contract MessageBoard {
@@ -804,11 +804,6 @@ contract MessageBoard {
     
     //Declaring an event
     event MessageCreated (string text, address _address, string name, bool isValue  );
-
-    //Constructor
-    constructor() public {
-
-    }
 
     //mapping is a key value store. We are specified type of key and value
     mapping (address =&gt; User) users;
