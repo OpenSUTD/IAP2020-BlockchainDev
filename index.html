@@ -18,7 +18,7 @@
       color: red;
     }
   </style>
-    <script>
+  <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
@@ -593,11 +593,55 @@ class Blockchain(object)
 <li><strong>Discuss </strong>with your partner what this smart contract does</li>
 <li><strong>Share</strong> with the class</li>
 </ol>
+<p>We analysed a <a href="https://www.eveem.org/code/0x1f52b87C3503e537853e160adBF7E330eA0Be7C4" target="_blank">decompiled auction contract</a> from <a href="https://www.stateofthedapps.com/dapps/opensea" target="_blank">OpenSea</a>.</p>
+<p>Simply by looking at the decompiled code, we noticed:</p>
+<ol type="1" start="1">
+<li>Each <code>auction</code> was a struct</li>
+<li>How <code>require</code> works</li>
+<li>Some basic checks on deciding price upper and lower limits</li>
+<li>Assigning values to variables</li>
+<li>Event logging</li>
+</ol>
+<pre>def createAuction(address _tokenAddress, uint256 _tokenId, uint256 _startingPrice, uint256 _endingPrice, uint256 _duration, address _seller): # not payable
+  require not uint8(stor0.field_160)
+  require _startingPrice &lt; 0xffffffffffffffffffffffffffffffff
+  require _endingPrice &lt; 0xffffffffffffffffffffffffffffffff
+  require _duration &lt;= 18446744073709551615
+  require ext_code.size(_tokenAddress)
+  call _tokenAddress.ownerOf(uint256 tokenId) with:
+       gas gas_remaining - 710 wei
+      args _tokenId
+  require ext_call.success
+  require ext_call.return_data[12 len 20] == caller
+  require ext_code.size(_tokenAddress)
+  call _tokenAddress.transferFrom(address from, address to, uint256 value) with:
+       gas gas_remaining - 710 wei
+      args caller, addr(this.address), _tokenId
+  require ext_call.success
+  require uint64(_duration) &gt;= 60
+  auction[addr(_tokenAddress)][_tokenId].field_0 = _tokenAddress
+  auction[addr(_tokenAddress)][_tokenId].field_256 = _seller
+  auction[addr(_tokenAddress)][_tokenId].field_512 = uint128(_startingPrice)
+  auction[addr(_tokenAddress)][_tokenId].field_640 = uint128(_endingPrice)
+  auction[addr(_tokenAddress)][_tokenId].field_768 = uint64(_duration)
+  auction[addr(_tokenAddress)][_tokenId].field_832 = uint64(block.timestamp)
+  log AuctionCreated(
+       address contract=addr(_tokenAddress),
+       uint256 tokenId=_tokenId,
+       uint256 startingPrice=_startingPrice &lt;&lt; 128,
+       uint256 endingPrice=_endingPrice &lt;&lt; 128,
+      uint256 duration=uint64(_duration))</pre>
+<aside class="warning"><p>Smart contracts are currently most popularly coded in Solidity. Here are some useful resources to learn it</p>
+<ol type="1" start="1">
+<li><a href="https://learnxinyminutes.com/docs/solidity/" target="_blank">Learn Solidity in Y minutes</a></li>
+<li><a href="https://cryptozombies.io/" target="_blank">Cryptozombies</a></li>
+</ol>
+</aside>
 
 
       </google-codelab-step>
     
-      <google-codelab-step label="Syllabus Overview" duration="40">
+      <google-codelab-step label="Syllabus Overview" duration="5">
         <p>Today we will learn about Ethereum development through working with several smart contracts and dapps. Each segment is separated into:</p>
 <ol type="1" start="1">
 <li><strong>Deploy </strong>the smart contract and explore every function</li>
@@ -666,7 +710,10 @@ contract Greeter is Mortal {
 <ul>
 <li>Replace <code>**</code> with your address and your roommate&#39;s address</li>
 <li>The <code>Id</code> acts like a password and you need to put the same Id as your address&#39; position in the array it is stored</li>
+<li>Interact with your roommate&#39;s contract!</li>
 </ul>
+<aside class="warning"><p>Ensure that you have compiled the same contract as your roommate, then call the address of the smart contract to interact with it!</p>
+</aside>
 <pre>pragma experimental ABIEncoderV2;
 
 contract RoomieAgreement {
@@ -697,7 +744,7 @@ contract RoomieAgreement {
     mapping (address =&gt; uint) public roomieDeposits;
     
     // This function checks that you submit the minimum deposit and includes it
-    // The payable modifier let&#39;s you send money to the smart contract through this function
+    // The payable modifier lets you send money to the smart contract through this function
     function addDeposit() public payable {
         //require checks a condition. if it fails, it kills the current transaction and reverts
         require(msg.value &gt; minDeposit);
@@ -739,14 +786,51 @@ contract RoomieAgreement {
 }</pre>
 <h2 is-upgraded><strong>Discuss</strong></h2>
 <ol type="1" start="1">
-<li>Privacy - you have put your contract address on the blockchain</li>
+<li>Privacy - you have put your contract address on the blockchain, <a href="https://medium.com/@weijiek/private-voting-and-whistleblowing-in-ethereum-using-semaphore-449b376808e" target="_blank">how about private voting</a>?</li>
 <li>Fake claims - your roomie can essentially just claim all the money anytime</li>
 <li>Lack of adjudication - how do you know who was right or wrong in a dispute?</li>
 <li>Gas guzzling - are there more efficient ways to write this contract?</li>
 <li>Game theory - how do you incentivise someone to not abuse the claiming function?</li>
+<li>What is wrong with the Dispute function? How can we do it better?</li>
 </ol>
 <h2 is-upgraded><strong>Develop</strong></h2>
 <p><strong>Advanced: </strong>Implement a solution to any one of these problems we have discussed.</p>
+<p><strong>Simple passwords</strong></p>
+<p>Having a simple password on the contract. Note that the password should at least be hashed.</p>
+<pre>uint[] private passwords = [12345, 123456]; //should be hashed
+
+function createAgreement(string _agreementTerms, uint _roomieId, uint _password) public {
+        require(roomies[_roomieId-1] == msg.sender);
+        require(_password == passwords[_roomieId-1]);
+        agreementId++;
+        agreements.push(agreement(agreementId,_agreementTerms));
+
+        // Event is fired off when this function is complete
+        emit NewAgreement(agreementId,_agreementTerms);
+    }</pre>
+<p><strong>Adding a username password pair</strong></p>
+<p>Before allowing the transaction, check if the password and username is correct. Again, this should be hashed. Also, the return function should be an <code>emit</code> instead.</p>
+<pre>bool has_Login = false;
+
+function enterPassword(string _username, string _password) public returns (string memory){
+        if (keccak256(abi.encodePacked((_username))) == keccak256(abi.encodePacked((&#34;hello&#34;))) &amp;&amp; keccak256(abi.encodePacked((_password))) == keccak256(abi.encodePacked((&#34;yes&#34;)))){
+            has_Login = true;
+            return &#34;Welcome!&#34;; // emit welcomeMessage(bool _has_Login);
+        }
+        else{
+
+            return &#34;Login Failed!&#34;; // emit welcomeMessage(bool _has_Login);
+
+        }
+    }
+
+function addDeposit() public payable {
+        //require checks a condition. if it fails, it kills the current transaction and reverts
+        require(msg.value &gt; minDeposit);
+        require(has_Login == true);
+        roomieDeposits[msg.sender] = msg.value;
+        totalDeposit = totalDeposit+msg.value;
+    }</pre>
 <p><strong>Intermediate:</strong> Create a function that adds another party as an adjudicator</p>
 <pre>bool disputeApproval = false;
     function approveDisputeClaim() public {
@@ -843,13 +927,54 @@ contract MessageBoard {
 }</pre>
 <h2 is-upgraded><strong>Discuss</strong></h2>
 <ul>
-<li>Can there be a better structure for how messageboard keeps messages? The current deployed messageboard can only keep track of the first 10 messages to be written to the board. How should we rewrite the code such that the last 10 messages are kept instead?</li>
+<li>Can there be a better structure for how messageboard keeps messages? The current deployed messageboard can only keep track of the first 10 messages to be written to the board. </li>
+<li>How should we rewrite the code such that the last 10 messages are kept instead?</li>
 <li>Useful feature: currently messages can only be accessed by message index, how about a feature to access latest message?</li>
 <li>Would a dynamic array which increases in size as more people write to the messageboard be better than our fixed-length message board?</li>
 <li>What are some ways to disincentivise spam on the messageboard?</li>
 </ul>
 <h2 is-upgraded><strong>Develop</strong></h2>
 <p><strong>Advanced: </strong>Implement a solution to any one of these problems we have discussed.</p>
+<p><strong>Implement a check to prevent consecutive posting and payment</strong></p>
+<p>Ensure that any post will need to be paid for</p>
+<pre>    address prev;
+    uint minVal = 1;
+    uint minDeposit = minVal / 10000;
+
+    function sendMessage (string text) public payable returns (bool) {
+        //require() is throwing error, if the input is not true
+        require(userExists(msg.sender) == true,&#34;msg.sender is not added into users&#34;);
+        require(msg.sender != prev, &#34;You&#39;re already the previous sender! Wait a while.&#34;);
+        require(msg.value &gt;= minDeposit);
+        messageCount++;
+        latest++;
+        latest = latest % maxLog;
+        emit MessageCreated(text, users[msg.sender]._address,users[msg.sender].name,true);
+        messageBoardLogs[latest] = Message(text, users[msg.sender]);
+        prev = msg.sender;
+        return true;
+    }</pre>
+<p><strong>Make message posters perform some form of proof-of-work</strong></p>
+<p>Store proofs that have already been done to prevent repeats. Message posters will have to hash their text and a nonce to form their own proof. Check that the proof has 4 leading 0s.</p>
+<pre>mapping (bytes32 =&gt; bool) proofs;
+    //it is creating an event Message with text and user.
+    // To control for spam, must hash your message with a nonce to obtain a proof with
+    //    required amount of leading zeros.
+    function sendMessage (string text, uint256 nonce, bytes32 proof) public returns (bool) {
+        //require() is throwing error, if the input is not true
+        require(proofs[proof] == false);
+        require(keccak256(abi.encodePacked(text, nonce)) == proof);
+        require(userExists(msg.sender) == true,&#34;msg.sender is not added into users&#34;);
+        require(proof[0] == 0);
+        require(proof[1] == 0);
+        require(proof[2] == 0);
+        require(proof[3] == 0);
+        proofs[proof] = true;
+        messageCount++;
+        emit MessageCreated(text, users[msg.sender]._address,users[msg.sender].name,true);
+        messageBoardLogs[messageCount] = Message(text, users[msg.sender]);
+        return true;
+    }</pre>
 <p><strong>Intermediate</strong>: devise a solution for the 10 message limit</p>
 <pre>    //messageBoardLogs can store up to 20 messages
     Message[21] messageBoardLogs;
@@ -906,7 +1031,6 @@ contract MessageBoard {
 
 }</pre>
 <p><strong>Beginner</strong>: what are some ways that people have used blockchain to share messages?</p>
-<h2 is-upgraded><strong>Digest</strong></h2>
 
 
       </google-codelab-step>
@@ -914,6 +1038,7 @@ contract MessageBoard {
       <google-codelab-step label="Voting on the blockchain" duration="40">
         <h2 is-upgraded><strong>Deploy</strong></h2>
 <p>This contract simulates a simple voting process. There are 2 candidates you can vote for.</p>
+<p>To view the frontend, <a href="https://drive.google.com/drive/folders/1lgsti3TaQusW0_2_kbVZcgWiay9FdbXe" target="_blank">download this file</a>.</p>
 <pre>pragma solidity ^0.5.1;
 
 contract Election {
